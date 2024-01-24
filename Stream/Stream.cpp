@@ -15,11 +15,6 @@ public:
 		
 
 	}
-	void print2() {
-		cout << "\t X: " << x << "\t Y: " << y << "\t Z: " << z << endl;
-
-
-	}
 	friend ostream& operator<< (ostream& ost, Point& pnt) {
 		pnt.print(ost);
 		return ost;
@@ -88,7 +83,7 @@ public:
 		name();
 		for (size_t i = 0; i < size; i++)
 		{
-
+			pnt[i].setXYZ(rand() % 10 + 1, rand() % 10 + 1, rand() % 10 + 1);
 		}
 		if (!wrtPach())
 		{
@@ -98,14 +93,28 @@ public:
 		{
 			cout << "constr " << endl;
 		}
-
 	}
+
+	void print(ostream & ost) {
+		for (size_t i = 0; i < size; i++)
+		{
+			pnt[i].print(ost);
+		}
+	}
+	friend ostream& operator<< (ostream& ost, ArrPoint& ap) {
+		ap.print(ost);
+		return ost;
+	}
+
 };
+
+int ArrPoint::count = 0;
 
 
 int main() {
 	
-
+	ArrPoint ap(5);
+	cout << ap;
 
 
 }
