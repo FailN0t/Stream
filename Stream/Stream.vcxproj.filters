@@ -19,21 +19,4 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="FIL2.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="FIL1.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="Pnt1.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="Pnt2.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="Count.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-  </ItemGroup>
 </Project>

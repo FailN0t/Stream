@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 using namespace std;
-
+#pragma warning(disable : 4996)
 
 class Point {
 	int x, y, z;
@@ -35,12 +35,42 @@ public:
 	}
 };
 
+class ArrPoint {
+	char pach[255];
+	char pachC[10] = "Count.bin";
+	static int count;
+	Point* pnt;
+	int size;
+	void name() {
+		string ph = "pach" + to_string(count) + ".bin";
+		strncpy(pach, ph.c_str(), ph.length() + 1);
+	}
+	bool wrtPach() {
+		ofstream fout;
+		fout.open(pach, ofstream::out);
+		fout.close();
+		fout.open(pach, ofstream::app);
+		if (!fout.is_open()) {
+			cout << "err " << pach << endl;
+			return false;
+		}
+		else
+		{
+			fout.write((char*)&size, sizeof(int));
+			fout.write((char*)&pnt, sizeof(Point) * size);
 
+		}
+	}
+
+public:
+
+};
 
 
 int main() {
 	
-	
+	ArrPoint ap;
+
 
 
 }

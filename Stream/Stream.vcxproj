@@ -129,13 +129,6 @@
   <ItemGroup>
     <ClCompile Include="Stream.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Count.txt" />
-    <Text Include="FIL1.txt" />
-    <Text Include="FIL2.txt" />
-    <Text Include="Pnt1.txt" />
-    <Text Include="Pnt2.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
