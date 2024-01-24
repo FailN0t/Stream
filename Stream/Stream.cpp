@@ -112,7 +112,7 @@ int ArrPoint::count = 0;
 
 
 int main() {
-	
+	srand(time(NULL));
 	ArrPoint ap(5);
 	cout << ap;
 
