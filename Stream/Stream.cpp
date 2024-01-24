@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
+#include <time.h>
 using namespace std;
 #pragma warning(disable : 4996)
 
@@ -60,16 +61,50 @@ class ArrPoint {
 			fout.write((char*)&pnt, sizeof(Point) * size);
 
 		}
+		fout.close();
+		return true;
+	}
+	bool wrtPachC() {
+		ofstream fout;
+		fout.open(pachC, ofstream::out);
+		fout.close();
+		fout.open(pachC, ofstream::app);
+		if (!fout.is_open()) {
+			cout << "err " << pachC << endl;
+			return false;
+		}
+		else
+		{
+			fout.write((char*)&count, sizeof(int));
+
+		}
+		fout.close();
+		return true;
 	}
 
 public:
+	ArrPoint(int i) : pnt{ new Point[i] }, size{ i } {
+		count++;
+		name();
+		for (size_t i = 0; i < size; i++)
+		{
 
+		}
+		if (!wrtPach())
+		{
+			cout << "constr " << endl;
+		}
+		if (!wrtPachC())
+		{
+			cout << "constr " << endl;
+		}
+
+	}
 };
 
 
 int main() {
 	
-	ArrPoint ap;
 
 
 
