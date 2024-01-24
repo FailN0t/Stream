@@ -41,7 +41,7 @@ class ArrPoint {
 		string ph = "pach" + to_string(count) + ".bin";
 		strncpy(pach, ph.c_str(), ph.length() + 1);
 	}
-	bool rdPach1() {
+	bool rdPach1(string pach) {
 		ifstream fin;
 		fin.open(pach);
 		if (!fin.is_open()) {
@@ -55,7 +55,8 @@ class ArrPoint {
 		fin.close();
 		return true;
 	}
-	bool rdPach2() {
+	bool rdPach2(string pach) {
+		Point* pnt2 = new Point[size];
 		ifstream fin;
 		fin.open(pach);
 		if (!fin.is_open()) {
@@ -66,11 +67,17 @@ class ArrPoint {
 		{
 			fin.read((char*)&size, sizeof(int));
 			fin.read((char*)&pnt, sizeof(Point) * size);
+			for (size_t i = 0; i < size; i++)
+			{
+				pnt = pnt2;
+			}
+			pnt2 = nullptr;
 		}
 		fin.close();
 		return true;
 	}
 	bool wrtPach() {
+		
 		ofstream fout;
 		fout.open(pach, ofstream::out);
 		fout.close();
@@ -127,12 +134,12 @@ public:
 
 	ArrPoint(string pach) {
 		count++;
-		if (!rdPach1())
+		if (!rdPach1(pach))
 		{
 			cout << "constr " << endl;
 		}
 		pnt = new Point[size];
-		if (!rdPach2())
+		if (!rdPach2(pach))
 		{
 			cout << "constr " << endl;
 		}
@@ -147,6 +154,29 @@ public:
 		}
 	}
 
+	void copy(string pach) {
+		if (!rdPach1(pach))
+		{
+			cout << "copy " << endl;
+		}
+		pnt = new Point[size];
+		if (!rdPach2(pach))
+		{
+			cout << "copy " << endl;
+		}
+		if (!wrtPach())
+		{
+			cout << "copy " << endl;
+		}
+		if (!wrtPachC())
+		{
+			cout << "copy " << endl;
+		}
+	}
+
+	void operator()(string pach) {
+		copy(pach);
+	}
 
 	void print(ostream & ost) {
 		for (size_t i = 0; i < size; i++)
@@ -159,6 +189,13 @@ public:
 		return ost;
 	}
 
+	string getPach() {
+		return pach;
+	}
+	~ArrPoint() {
+		cout << "dest " << this << " pnt " << pnt << endl;;
+		delete[] pnt;
+	}
 };
 
 int ArrPoint::count = 0;
@@ -166,8 +203,18 @@ int ArrPoint::count = 0;
 
 int main() {
 	srand(time(NULL));
-	ArrPoint ap(5);
+	ArrPoint ap(3);
 	cout << ap;
+	ArrPoint ap2(ap.getPach());
+	cout << endl;
+	cout << ap2;
+	ArrPoint ap3;
+	cout << endl;
+	cout << ap3;
 
+	ap3(ap2.getPach());
+
+	cout << endl;
+	cout << ap3;
 
 }
