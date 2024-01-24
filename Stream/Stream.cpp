@@ -41,6 +41,35 @@ class ArrPoint {
 		string ph = "pach" + to_string(count) + ".bin";
 		strncpy(pach, ph.c_str(), ph.length() + 1);
 	}
+	bool rdPach1() {
+		ifstream fin;
+		fin.open(pach);
+		if (!fin.is_open()) {
+			cout << "err " << pach << endl;
+			return false;
+		}
+		else
+		{
+			fin.read((char*)&size, sizeof(int));
+		}
+		fin.close();
+		return true;
+	}
+	bool rdPach2() {
+		ifstream fin;
+		fin.open(pach);
+		if (!fin.is_open()) {
+			cout << "err " << pach << endl;
+			return false;
+		}
+		else
+		{
+			fin.read((char*)&size, sizeof(int));
+			fin.read((char*)&pnt, sizeof(Point) * size);
+		}
+		fin.close();
+		return true;
+	}
 	bool wrtPach() {
 		ofstream fout;
 		fout.open(pach, ofstream::out);
@@ -94,6 +123,30 @@ public:
 			cout << "constr " << endl;
 		}
 	}
+	ArrPoint():ArrPoint(5) {}
+
+	ArrPoint(string pach) {
+		count++;
+		if (!rdPach1())
+		{
+			cout << "constr " << endl;
+		}
+		pnt = new Point[size];
+		if (!rdPach2())
+		{
+			cout << "constr " << endl;
+		}
+		name();
+		if (!wrtPach())
+		{
+			cout << "constr " << endl;
+		}
+		if (!wrtPachC())
+		{
+			cout << "constr " << endl;
+		}
+	}
+
 
 	void print(ostream & ost) {
 		for (size_t i = 0; i < size; i++)
