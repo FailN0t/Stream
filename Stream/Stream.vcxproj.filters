@@ -26,5 +26,8 @@
     <None Include="Count.bin">
       <Filter>Файлы ресурсов</Filter>
     </None>
+    <None Include="CountF.bin">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
   </ItemGroup>
 </Project>

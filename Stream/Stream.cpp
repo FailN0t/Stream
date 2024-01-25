@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <time.h>
+#include <stdio.h>
 using namespace std;
 #pragma warning(disable : 4996)
 
@@ -34,7 +35,9 @@ public:
 class ArrPoint {
 	char pach[255];
 	char pachC[10] = "Count.bin";
+	char pachF[11] = "CountF.bin";
 	static int count;
+	static int countF;
 	Point* pnt;
 	int size;
 	void name() {
@@ -110,12 +113,31 @@ class ArrPoint {
 
 		}
 		fout.close();
+		wrtPachF();
+		return true;
+	}
+	bool wrtPachF() {
+		ofstream fout;
+		fout.open(pachF, ofstream::out);
+		fout.close();
+		fout.open(pachF, ofstream::app);
+		if (!fout.is_open()) {
+			cout << "err " << pachC << endl;
+			return false;
+		}
+		else
+		{
+			fout.write((char*)&countF, sizeof(int));
+
+		}
+		fout.close();
 		return true;
 	}
 
 public:
 	ArrPoint(int i) : pnt{ new Point[i] }, size{ i } {
 		count++;
+		countF++;
 		name();
 		for (size_t i = 0; i < size; i++)
 		{
@@ -134,6 +156,7 @@ public:
 
 	ArrPoint(string pach) {
 		count++;
+		countF++;
 		if (!rdPach1(pach))
 		{
 			cout << "constr " << endl;
@@ -195,26 +218,32 @@ public:
 	~ArrPoint() {
 		cout << "dest " << this << " pnt " << pnt << endl;;
 		delete[] pnt;
+		countF--;
+		wrtPachF();
+		std::remove(pach); //удалить
+
 	}
 };
 
 int ArrPoint::count = 0;
-
+int ArrPoint::countF = 0;
 
 int main() {
 	srand(time(NULL));
-	ArrPoint ap(3);
-	cout << ap;
-	ArrPoint ap2(ap.getPach());
-	cout << endl;
-	cout << ap2;
-	ArrPoint ap3;
-	cout << endl;
-	cout << ap3;
+	
 
-	ap3(ap2.getPach());
+	ArrPoint* ap;
+	ap = new ArrPoint[6];
+	ArrPoint* ap2;
+	ap2 = new ArrPoint[5];
+	ArrPoint* ap4;
+	ap4 = new ArrPoint[5];
+	ArrPoint* ap5;
+	ap5 = new ArrPoint[5];
+	ArrPoint* ap6;
+	ap6 = new ArrPoint[5];
 
-	cout << endl;
-	cout << ap3;
+	delete[] ap5;
+	delete[] ap2;
 
 }
