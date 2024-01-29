@@ -216,11 +216,7 @@ public:
 		return pach;
 	}
 	~ArrPoint() {
-		cout << "dest " << this << " pnt " << pnt << endl;;
-		delete[] pnt;
-		countF--;
-		wrtPachF();
-		std::remove(pach); //удалить
+		
 
 	}
 };
@@ -232,18 +228,6 @@ int main() {
 	srand(time(NULL));
 	
 
-	ArrPoint* ap;
-	ap = new ArrPoint[6];
-	ArrPoint* ap2;
-	ap2 = new ArrPoint[5];
-	ArrPoint* ap4;
-	ap4 = new ArrPoint[5];
-	ArrPoint* ap5;
-	ap5 = new ArrPoint[5];
-	ArrPoint* ap6;
-	ap6 = new ArrPoint[5];
-
-	delete[] ap5;
-	delete[] ap2;
+	
 
 }
