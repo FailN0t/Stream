@@ -129,11 +129,6 @@
   <ItemGroup>
     <ClCompile Include="Stream.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Count.bin" />
-    <None Include="CountF.bin" />
-    <None Include="pach1.bin" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

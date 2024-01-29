@@ -59,7 +59,6 @@ class ArrPoint {
 		return true;
 	}
 	bool rdPach2(string pach) {
-		Point* pnt2 = new Point[size];
 		ifstream fin;
 		fin.open(pach);
 		if (!fin.is_open()) {
@@ -69,12 +68,11 @@ class ArrPoint {
 		else
 		{
 			fin.read((char*)&size, sizeof(int));
-			fin.read((char*)&pnt, sizeof(Point) * size);
+			fin.read((char*)pnt, sizeof(Point) * size);
 			for (size_t i = 0; i < size; i++)
 			{
-				pnt = pnt2;
+				cout << pnt[i];
 			}
-			pnt2 = nullptr;
 		}
 		fin.close();
 		return true;
@@ -92,7 +90,7 @@ class ArrPoint {
 		else
 		{
 			fout.write((char*)&size, sizeof(int));
-			fout.write((char*)&pnt, sizeof(Point) * size);
+			fout.write((char*)pnt, sizeof(Point) * size);
 
 		}
 		fout.close();
@@ -215,9 +213,17 @@ public:
 	string getPach() {
 		return pach;
 	}
+	static int getCount() {
+		return count;
+	}
+	static int getCountF() {
+		return countF;
+	}
 	~ArrPoint() {
-		
-
+		cout << "del " << this << "pnt " << pnt << endl;
+		delete pnt;
+		countF--;
+		std::remove(pach);
 	}
 };
 
@@ -226,8 +232,15 @@ int ArrPoint::countF = 0;
 
 int main() {
 	srand(time(NULL));
+	ArrPoint* ap6 = new ArrPoint[4];
+	ArrPoint* ap = new ArrPoint[4];
+	ArrPoint* ap1 = new ArrPoint[4];
+	ArrPoint* ap2 = new ArrPoint[4];
+	ArrPoint* ap3 = new ArrPoint[4];
 	
-
-	
+	delete[] ap;
+	delete[] ap2;
+	cout << ArrPoint::getCount() << endl;
+	cout << ArrPoint::getCountF() << endl;
 
 }
