@@ -231,32 +231,10 @@ int ArrPoint::count = 0;
 int ArrPoint::countF = 0;
 
 
-template <class T>
-class Atp{
-	T* ptr;
-public:
-	explicit Atp(T* p) throw() {
-		ptr = p;
-	}
-	~Atp() {
-		delete[] ptr;
-	}
-
-	T& operator*() const throw() {
-		return *ptr;
-	}
-	T* operator->() const throw() {
-		return ptr;
-	}
-
-};
 
 int main() {
 	srand(time(NULL));
 
-	auto_ptr<ArrPoint> ap2(new ArrPoint);
-
-	Atp<ArrPoint> ap(new ArrPoint[2]);
 
 
 
