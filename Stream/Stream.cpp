@@ -230,12 +230,49 @@ public:
 int ArrPoint::count = 0;
 int ArrPoint::countF = 0;
 
+template <class T>
+class Apt {
+	T* ptr;
+public:
+	explicit Apt(T* p = 0) throw() {
+		ptr = p;
+	}
+	~Apt() throw(){
+		delete ptr;
+	}
+	T& operator*() const throw() {
+		return *ptr;
+	}
+	T* operator->() {
+		return ptr;
+	}
+};
 
+
+template <class T>
+class AptM {
+	T* ptr;
+public:
+	explicit AptM(T* p = 0) throw() {
+		ptr = p;
+	}
+	~AptM() throw() {
+		delete[] ptr;
+	}
+	T& operator*() const throw() {
+		return *ptr;
+	}
+	T* operator->() {
+		return ptr;
+	}
+};
 
 int main() {
 	srand(time(NULL));
 
+	Apt<ArrPoint> ap(new ArrPoint);
 
+	AptM<ArrPoint> ap2(new ArrPoint[4]);
 
 
 }
