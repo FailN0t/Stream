@@ -238,12 +238,7 @@ public:
 		ptr = p;
 	}
 	~Apt() throw(){
-		try {
-			delete ptr;
-		}
-		catch(exception e){
-			delete[] ptr;
-		}
+		delete ptr;
 	}
 	T& operator*() const throw() {
 		return *ptr;
@@ -275,9 +270,7 @@ public:
 int main() {
 	srand(time(NULL));
 
-	Apt<ArrPoint> ap(new ArrPoint[4]);
 
-	AptM<ArrPoint> ap2(new ArrPoint[4]);
 
 
 }
